@@ -10,7 +10,7 @@ public static class MySetup
 
         public static void CreateMyFolders()
         {
-            Folder.CreateFolders("_Project", "Animations", "Art", "Audio", "Fonts", "Materials", "Prefabs", "ScriptableObjects", "Scripts", "Settings");
+            Folder.CreateFolders("_Project", "Animations", "Art", "Audio", "Characters", "Obstacles", "Terrain", "Fonts", "Materials", "Prefabs", "ScriptableObjects", "Scripts", "Settings");
             AssetDatabase.Refresh();
         }
         public static void CreateFolders(string root, params string[] folders)
