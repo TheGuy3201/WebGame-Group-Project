@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3ecf8d23ff9918545a9624388b79887d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 213840
+  packageName: Lowpoly Flatbed Truck
+  packageVersion: 1.1
+  assetPath: Assets/SpawnCampGames/LowPolyFlatbed/Materials/Lights/Emissive/Amberlights.mat
+  uploadId: 488857
