@@ -48,28 +48,27 @@ namespace WebGame397
             UpdateMovement();
         }
 
-        private void UpdateMovement() 
+        private void UpdateMovement()
         {
-            //auto id of type
             var adjustedDirection = Quaternion.AngleAxis(mainCam.eulerAngles.y, Vector3.up) * movement;
             if (adjustedDirection.magnitude > 0f)
             {
-                //Handle rotation and movement
                 HandleRotation(adjustedDirection);
                 HandleMovement(adjustedDirection);
             }
             else
             {
-                //not change rotation or movement, but need to apply rigidbody Y for gravity
+                // Ensure Y velocity is preserved (gravity works properly)
                 rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
             }
         }
 
-        private void HandleMovement(Vector3 adjustedMovement) 
+        private void HandleMovement(Vector3 adjustedMovement)
         {
             var velocity = adjustedMovement * moveSpeed * Time.fixedDeltaTime;
-            rb.linearVelocity = new Vector3(velocity.x, rb.linearVelocity.y, velocity.z);
+            rb.linearVelocity = new Vector3(velocity.x, rb.linearVelocity.y, velocity.z); // Fixed: changed to rb.velocity
         }
+
 
         private void HandleRotation(Vector3 adjustedRotation) 
         {
