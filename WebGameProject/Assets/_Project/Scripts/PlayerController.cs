@@ -3,10 +3,8 @@ using UnityEngine;
 namespace WebGame397
 {
     [RequireComponent(typeof(Rigidbody))]
-
     public class PlayerController : MonoBehaviour
     {
-
         [SerializeField] private InputReader input;
         [SerializeField] private Rigidbody rb;
         [SerializeField] private Vector3 movement;
@@ -14,8 +12,13 @@ namespace WebGame397
         [SerializeField] private float moveSpeed = 200f;
         [SerializeField] private float rotationSpeed = 200f;
 
+        [SerializeField] private float jumpForce = 10f;
+        [SerializeField] private float fallMultiplier = 100.5f;  // Stronger gravity when falling
+        [SerializeField] private float lowJumpMultiplier = 2f; // More control over jump height
+
         [SerializeField] private Transform mainCam;
 
+        private bool isGrounded;
 
         private void Awake()
         {
@@ -24,23 +27,21 @@ namespace WebGame397
             mainCam = Camera.main.transform;
         }
 
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
         private void Start()
         {
-            //Debug.Log("[Start]");
             input.EnablePlayerActions();
         }
 
         private void OnEnable()
         {
             input.Move += GetMovement;
-            //Debug.Log("[OnEnable]");
+            input.Jump += Jump;
         }
 
         private void OnDisable()
         {
             input.Move -= GetMovement;
-            //Debug.Log("[OnDisable]");
+            input.Jump -= Jump;
         }
 
         private void FixedUpdate()
@@ -58,7 +59,6 @@ namespace WebGame397
             }
             else
             {
-                // Ensure Y velocity is preserved (gravity works properly)
                 rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
             }
         }
@@ -66,11 +66,10 @@ namespace WebGame397
         private void HandleMovement(Vector3 adjustedMovement)
         {
             var velocity = adjustedMovement * moveSpeed * Time.fixedDeltaTime;
-            rb.linearVelocity = new Vector3(velocity.x, rb.linearVelocity.y, velocity.z); // Fixed: changed to rb.velocity
+            rb.linearVelocity = new Vector3(velocity.x, rb.linearVelocity.y, velocity.z);
         }
 
-
-        private void HandleRotation(Vector3 adjustedRotation) 
+        private void HandleRotation(Vector3 adjustedRotation)
         {
             var targetRotation = Quaternion.LookRotation(adjustedRotation);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
@@ -80,12 +79,38 @@ namespace WebGame397
         {
             movement.x = move.x;
             movement.z = move.y;
-            //Debug.Log($"Input Working {move}");
         }
 
-        /*private void Destroy()
+        private void Jump()
         {
-            Debug.Log("[Destroy]");
-        }*/
+            if (isGrounded)
+            {
+                rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
+                isGrounded = false;
+            }
+        }
+
+        private void ApplyBetterJumpPhysics()
+        {
+            if (rb.linearVelocity.y < 0)
+            {
+                // Increase gravity when falling for a snappier descent
+                rb.linearVelocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+            }
+            else if (rb.linearVelocity.y > 0 && !Input.GetKey(KeyCode.Space))
+            {
+                // Apply more gravity if the jump button is released early
+                rb.linearVelocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime;
+            }
+        }
+
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("Ground"))
+            {
+                isGrounded = true;
+            }
+        }
     }
 }

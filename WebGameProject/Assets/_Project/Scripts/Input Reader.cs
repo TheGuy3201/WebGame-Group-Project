@@ -10,6 +10,7 @@ namespace WebGame397
     public class InputReader : ScriptableObject, IPlayerActions
     {
         public event UnityAction<Vector2> Move = delegate { };
+        public event UnityAction Jump = delegate { };
 
         InputSystem_Actions input;
 
@@ -47,11 +48,19 @@ namespace WebGame397
             Move?.Invoke(context.ReadValue<Vector2>());
         }
 
+        public void OnJump(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+            {
+                Jump?.Invoke();
+            }
+        }
+
         public void OnLook(InputAction.CallbackContext context) { }
         public void OnAttack(InputAction.CallbackContext context) { }
         public void OnInteract(InputAction.CallbackContext context) { }
         public void OnCrouch(InputAction.CallbackContext context) { }
-        public void OnJump(InputAction.CallbackContext context) { }
+        
         public void OnPrevious(InputAction.CallbackContext context) { }
         public void OnNext(InputAction.CallbackContext context) { }
         public void OnSprint(InputAction.CallbackContext context) { }
