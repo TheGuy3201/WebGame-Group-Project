@@ -42,7 +42,6 @@ namespace WebGame397
                     Move?.Invoke(context.ReadValue<Vector2>());
                     break;
                 default:
-                    //Debug.Log("Not input handled");
                     break;
             }
             Move?.Invoke(context.ReadValue<Vector2>());
@@ -60,7 +59,6 @@ namespace WebGame397
         public void OnAttack(InputAction.CallbackContext context) { }
         public void OnInteract(InputAction.CallbackContext context) { }
         public void OnCrouch(InputAction.CallbackContext context) { }
-        
         public void OnPrevious(InputAction.CallbackContext context) { }
         public void OnNext(InputAction.CallbackContext context) { }
         public void OnSprint(InputAction.CallbackContext context) { }

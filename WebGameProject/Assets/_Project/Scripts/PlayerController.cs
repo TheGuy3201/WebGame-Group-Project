@@ -1,4 +1,7 @@
+using Terminus;
+using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace WebGame397
 {
@@ -13,10 +16,10 @@ namespace WebGame397
         [SerializeField] private float rotationSpeed = 200f;
 
         [SerializeField] private float jumpForce = 10f;
-        [SerializeField] private float fallMultiplier = 100.5f;  // Stronger gravity when falling
-        [SerializeField] private float lowJumpMultiplier = 2f; // More control over jump height
 
         [SerializeField] private Transform mainCam;
+
+        [SerializeField] private Animator animator;
 
         private bool isGrounded;
 
@@ -30,6 +33,7 @@ namespace WebGame397
         private void Start()
         {
             input.EnablePlayerActions();
+            animator = GetComponent<Animator>();
         }
 
         private void OnEnable()
@@ -59,6 +63,8 @@ namespace WebGame397
             }
             else
             {
+                animator.SetFloat("Speed", 0);
+                animator.SetFloat("MotionSpeed", 1);
                 rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
             }
         }
@@ -67,6 +73,8 @@ namespace WebGame397
         {
             var velocity = adjustedMovement * moveSpeed * Time.fixedDeltaTime;
             rb.linearVelocity = new Vector3(velocity.x, rb.linearVelocity.y, velocity.z);
+            animator.SetFloat("Speed", 2);
+            animator.SetFloat("MotionSpeed", 1);
         }
 
         private void HandleRotation(Vector3 adjustedRotation)
@@ -86,31 +94,41 @@ namespace WebGame397
             if (isGrounded)
             {
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
+                animator.Play("JumpStart");
                 isGrounded = false;
+                
             }
         }
-
-        private void ApplyBetterJumpPhysics()
-        {
-            if (rb.linearVelocity.y < 0)
-            {
-                // Increase gravity when falling for a snappier descent
-                rb.linearVelocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
-            }
-            else if (rb.linearVelocity.y > 0 && !Input.GetKey(KeyCode.Space))
-            {
-                // Apply more gravity if the jump button is released early
-                rb.linearVelocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime;
-            }
-        }
-
 
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.CompareTag("Ground"))
             {
                 isGrounded = true;
+                animator.SetBool("Grounded", isGrounded);
             }
         }
+
+        /*private void OnFootstep(AnimationEvent animationEvent)
+        {
+            if (animationEvent.animatorClipInfo.weight > 0.5f)
+            {
+                if (FootstepAudioClips.Length > 0)
+                {
+                    var index = Random.Range(0, FootstepAudioClips.Length);
+                    AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
+                }
+            }
+        }
+
+        private void OnLand(AnimationEvent animationEvent)
+        {
+            if (animationEvent.animatorClipInfo.weight > 0.5f)
+            {
+                AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
+            }
+        }*/
     }
+
+    
 }
