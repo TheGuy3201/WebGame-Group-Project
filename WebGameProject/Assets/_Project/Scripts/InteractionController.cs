@@ -29,16 +29,19 @@ namespace Terminus
         {
             var ray = playerCam.ViewportPointToRay(new Vector2(0.5f, 0.5f));
 
-            Physics.Raycast(ray, out var hit, interactionDistance);
-            if (hit.collider.CompareTag("Interactable"))
+            if (Physics.Raycast(ray, out var hit, interactionDistance) && hit.collider != null)
             {
-                currentTargetedInteractable = manager.GetComponent<IInteractable>();
+                if (hit.collider.CompareTag("Interactable"))
+                {
+                    currentTargetedInteractable = hit.collider.GetComponent<IInteractable>();
+                }
             }
             else
             {
-                currentTargetedInteractable = hit.collider?.GetComponent<IInteractable>();
+                currentTargetedInteractable = null;
             }
         }
+
 
         void UpdateInteractionText()
         {

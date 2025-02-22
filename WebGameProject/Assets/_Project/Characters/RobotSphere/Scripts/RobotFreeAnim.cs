@@ -1,76 +1,67 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.AI;
 
-public class RobotFreeAnim : MonoBehaviour {
+public class RobotFreeAnim : MonoBehaviour
+{
+    private Animator anim;
+    private NavMeshAgent agent;
+    private Transform player;
 
-	Vector3 rot = Vector3.zero;
-	float rotSpeed = 40f;
-	Animator anim;
+    [SerializeField] private float detectionRange = 6f; // Detection range
+    [SerializeField] private float moveSpeed = 6.5f; // Movement speed
+    [SerializeField] private float stoppingDistance = 1.5f; // Stop when close to player
 
-	// Use this for initialization
-	void Awake()
-	{
-		anim = gameObject.GetComponent<Animator>();
-		gameObject.transform.eulerAngles = rot;
-	}
+    void Awake()
+    {
+        anim = GetComponent<Animator>();
+        agent = GetComponent<NavMeshAgent>();
 
-	// Update is called once per frame
-	void Update()
-	{
-		CheckKey();
-		gameObject.transform.eulerAngles = rot;
-	}
+        // Get the player once
+        GameObject playerObj = GameObject.FindWithTag("Player");
+        if (playerObj != null)
+        {
+            player = playerObj.transform;
+        }
+        else
+        {
+            Debug.LogError("Player not found! Make sure the player has the 'Player' tag.");
+        }
+    }
 
-	void CheckKey()
-	{
-		// Walk
-		if (Input.GetKey(KeyCode.W))
-		{
-			anim.SetBool("Walk_Anim", true);
-		}
-		else if (Input.GetKeyUp(KeyCode.W))
-		{
-			anim.SetBool("Walk_Anim", false);
-		}
+    void Update()
+    {
+        if (player != null)
+        {
+            MoveToPlayer();
+            UpdateAnimation();
+        }
+    }
 
-		// Rotate Left
-		if (Input.GetKey(KeyCode.A))
-		{
-			rot[1] -= rotSpeed * Time.fixedDeltaTime;
-		}
+    void MoveToPlayer()
+    {
+        if (agent == null || !agent.isOnNavMesh)
+        {
+            Debug.LogError("NavMeshAgent is not on a valid NavMesh surface!");
+            return;
+        }
 
-		// Rotate Right
-		if (Input.GetKey(KeyCode.D))
-		{
-			rot[1] += rotSpeed * Time.fixedDeltaTime;
-		}
+        float distance = Vector3.Distance(transform.position, player.position);
 
-		// Roll
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			if (anim.GetBool("Roll_Anim"))
-			{
-				anim.SetBool("Roll_Anim", false);
-			}
-			else
-			{
-				anim.SetBool("Roll_Anim", true);
-			}
-		}
+        if (distance < detectionRange && distance > stoppingDistance)
+        {
+            agent.speed = moveSpeed;
+            agent.SetDestination(player.position);
+        }
+        else
+        {
+            agent.ResetPath(); // Stop moving if too close
+        }
+    }
 
-		// Close
-		if (Input.GetKeyDown(KeyCode.LeftControl))
-		{
-			if (!anim.GetBool("Open_Anim"))
-			{
-				anim.SetBool("Open_Anim", true);
-			}
-			else
-			{
-				anim.SetBool("Open_Anim", false);
-			}
-		}
-	}
-
+    void UpdateAnimation()
+    {
+        bool isMoving = agent.velocity.magnitude > 0.5f;
+        anim.SetBool("Walk_Anim", isMoving);
+        anim.SetBool("Open_Anim", !isMoving);
+    }
 }
