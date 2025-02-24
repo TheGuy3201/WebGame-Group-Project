@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d56359fb7f8f24f43b7d3a230500f2fd
+timeCreated: 1461579939
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 61454
+  packageName: Neon Shapes
+  packageVersion: 1.0
+  assetPath: Assets/NeonShapes/NeonBlueSquare.prefab
+  uploadId: 114603

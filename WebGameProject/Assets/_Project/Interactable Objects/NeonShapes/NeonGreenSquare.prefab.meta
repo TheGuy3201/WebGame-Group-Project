@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a5d528f63beb2d341b3a6772b74f0370
+timeCreated: 1461579936
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 61454
+  packageName: Neon Shapes
+  packageVersion: 1.0
+  assetPath: Assets/NeonShapes/NeonGreenSquare.prefab
+  uploadId: 114603

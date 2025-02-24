@@ -1,3 +1,4 @@
+using System;
 using Terminus;
 using TMPro;
 using UnityEngine;
@@ -20,6 +21,12 @@ namespace WebGame397
         [SerializeField] private Transform mainCam;
 
         [SerializeField] private Animator animator;
+        [SerializeField] private AudioClip[] FootstepAudioClips;
+        [SerializeField] private AudioClip LandingAudioClip;
+        [SerializeField] private float FootstepAudioVolume = 1.0f;
+
+        public event EventHandler OnDamage;
+        [SerializeField] private float health;
 
         private bool isGrounded;
 
@@ -109,15 +116,21 @@ namespace WebGame397
             }
         }
 
-        /*private void OnFootstep(AnimationEvent animationEvent)
+        private void OnFootstep(AnimationEvent animationEvent)
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
-                if (FootstepAudioClips.Length > 0)
+                if (FootstepAudioClips == null || FootstepAudioClips.Length == 0)
                 {
-                    var index = Random.Range(0, FootstepAudioClips.Length);
-                    AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
+                    Debug.LogWarning("FootstepAudioClips array is empty or not assigned!");
+                    return;
                 }
+
+                var index = UnityEngine.Random.Range(0, FootstepAudioClips.Length);
+
+                // Play sound at footstep position if available, otherwise use transform.position
+                Vector3 soundPosition = transform.position;
+                AudioSource.PlayClipAtPoint(FootstepAudioClips[index], soundPosition, FootstepAudioVolume);
             }
         }
 
@@ -125,9 +138,26 @@ namespace WebGame397
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
-                AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
+                if (LandingAudioClip == null)
+                {
+                    Debug.LogWarning("LandingAudioClip is not assigned!");
+                    return;
+                }
+
+                Vector3 soundPosition = transform.position;
+                AudioSource.PlayClipAtPoint(LandingAudioClip, soundPosition, FootstepAudioVolume);
             }
-        }*/
+        }
+
+        public void Damage(float amount)
+        {
+            health -= amount;
+
+            if (health < 0)
+                health = 0;
+
+            if (OnDamage != null) OnDamage(this, EventArgs.Empty);
+        }
     }
 
     

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1936811a43f57bd4a874dd0d96a711fc
+timeCreated: 1461579932
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 61454
+  packageName: Neon Shapes
+  packageVersion: 1.0
+  assetPath: Assets/NeonShapes/NeonRedSquare.prefab
+  uploadId: 114603

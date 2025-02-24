@@ -16,6 +16,10 @@ namespace Terminus
             //doesn't work unless project is built
             Debug.Log("Quit");
         }
+        public void OnOptionsButton()
+        {
+            Debug.Log("Open Options Menu (Part 3)");
+        }
 
 
     }

@@ -8,7 +8,6 @@ namespace Terminus
     public class InteractionController : MonoBehaviour
     {
         [SerializeField] Camera playerCam;
-        [SerializeField] private InputReader input;
 
         [SerializeField] GameObject manager;
 
@@ -33,7 +32,7 @@ namespace Terminus
             {
                 if (hit.collider.CompareTag("Interactable"))
                 {
-                    currentTargetedInteractable = hit.collider.GetComponent<IInteractable>();
+                    currentTargetedInteractable = manager.GetComponent<IInteractable>();
                 }
             }
             else
