@@ -7,6 +7,9 @@ TagManager:
   - CinemachineTarget
   - Ground
   - Interactable
+  - Blue
+  - PickUp
+  - ToInventory
   layers:
   - Default
   - TransparentFX
@@ -16,7 +19,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - holdLayer
   - 
   - 
   - 

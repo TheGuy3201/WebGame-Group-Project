@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using WebGame397;
 
 namespace Terminus
 {
@@ -17,6 +16,8 @@ namespace Terminus
 
         IInteractable currentTargetedInteractable;
 
+        RaycastHit seen;
+
         public void Update()
         {
             UpdateCurrentInteractable();
@@ -26,12 +27,13 @@ namespace Terminus
 
         void UpdateCurrentInteractable()
         {
-            var ray = playerCam.ViewportPointToRay(new Vector2(0.5f, 0.5f));
+            Ray ray = playerCam.ViewportPointToRay(new Vector2(0.5f, 0.5f));
 
             if (Physics.Raycast(ray, out var hit, interactionDistance) && hit.collider != null)
             {
-                if (hit.collider.CompareTag("Interactable"))
+                if (hit.collider.CompareTag("PickUp") || hit.collider.CompareTag("ToInventory"))
                 {
+                    seen = hit;
                     currentTargetedInteractable = manager.GetComponent<IInteractable>();
                 }
             }
@@ -57,7 +59,7 @@ namespace Terminus
         {
             if (Keyboard.current.eKey.wasPressedThisFrame && currentTargetedInteractable != null)
             {
-                currentTargetedInteractable.Interact();
+                currentTargetedInteractable.Interact(seen);
             }
         }
     }
