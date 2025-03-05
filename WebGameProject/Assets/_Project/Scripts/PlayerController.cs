@@ -1,4 +1,5 @@
 using System;
+using Terminus;
 using UnityEngine;
 
 namespace WebGame397
@@ -6,26 +7,32 @@ namespace WebGame397
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerController : MonoBehaviour
     {
+        //Input and movement readers
         [SerializeField] private InputReader input;
         [SerializeField] private Rigidbody rb;
         [SerializeField] private Vector3 movement;
 
+        //Movement variables
         [SerializeField] private float moveSpeed = 200f;
         [SerializeField] private float rotationSpeed = 200f;
-
         [SerializeField] private float jumpForce = 10f;
 
         [SerializeField] private Transform mainCam;
 
+        //Animation/Sound variables
         [SerializeField] private Animator animator;
         [SerializeField] private AudioClip[] FootstepAudioClips;
         [SerializeField] private AudioClip LandingAudioClip;
         [SerializeField] private float FootstepAudioVolume = 1.0f;
-
-        public event EventHandler OnDamage;
-        [SerializeField] private float health;
-
         private bool isGrounded;
+
+        //Health System variables
+        public event EventHandler OnDamage;
+        public float health;
+
+        //Death Screen Variables
+        public GameOver_Manager GameOverScreen;
+
 
         private void Awake()
         {
@@ -146,12 +153,19 @@ namespace WebGame397
             }
         }
 
+        private void OnDeath()
+        {
+            health = 0;
+            GameOverScreen.Setup("Game Over");
+            Debug.Log("You have died");
+        }
+
         public void Damage(float amount)
         {
             health -= amount;
 
             if (health < 0)
-                health = 0;
+                OnDeath();
 
             if (OnDamage != null) OnDamage(this, EventArgs.Empty);
         }
