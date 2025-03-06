@@ -38,7 +38,7 @@ public class PickUp : MonoBehaviour
         Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), false);
         heldObj.layer = 0; //object assigned back to default layer
         heldObjRb.isKinematic = false;
-        heldObj.transform.position = player.transform.position + player.transform.forward * 2f; // Drop it 2 units in front of the player
+        heldObj.transform.position = player.transform.position + player.transform.forward * 3f; // Drop it 3 units in front of the player
         heldObj.transform.parent = null; //unparent object
         heldObj = null; //undefine game object
         Debug.Log("Drop");

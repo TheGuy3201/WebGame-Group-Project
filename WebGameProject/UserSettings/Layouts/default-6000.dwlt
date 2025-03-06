@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1349
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Scene
   m_RootView: {fileID: 5}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 110
+  controlID: 73
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 65
+  controlID: 54
   draggingID: 0
 --- !u!114 &9
 MonoBehaviour:
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 66
+  controlID: 55
   draggingID: 0
 --- !u!114 &10
 MonoBehaviour:
@@ -252,7 +252,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 50}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 67
+  controlID: 56
   draggingID: 0
 --- !u!114 &11
 MonoBehaviour:
@@ -299,8 +299,8 @@ MonoBehaviour:
     y: 0
     width: 1573
     height: 775
-  m_MinSize: {x: 202, y: 226}
-  m_MaxSize: {x: 4002, y: 4026}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -448,7 +448,7 @@ MonoBehaviour:
     m_ControlHash: 1412526313
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 712
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
@@ -1047,9 +1047,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -8.734351, y: 1.5293965, z: -0.5286323}
+    m_Target: {x: 0.16295546, y: -10.278451, z: -21.934744}
     speed: 2
-    m_Value: {x: -8.734351, y: 1.5293965, z: -0.5286323}
+    m_Value: {x: 0.16295546, y: -10.278451, z: -21.934744}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1095,13 +1095,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.22202617, y: -0.62678164, z: 0.19285645, w: 0.72158027}
+    m_Target: {x: -0.00767594, y: 0.9398396, z: -0.34094018, w: -0.021146398}
     speed: 2
-    m_Value: {x: 0.22231272, y: -0.62569153, z: 0.19252104, w: 0.72251153}
+    m_Value: {x: -0.0055835056, y: 0.9409472, z: -0.33815113, w: -0.015523484}
   m_Size:
-    m_Target: 6.5451655
+    m_Target: 17.847273
     speed: 2
-    m_Value: 6.5451655
+    m_Value: 17.847273
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1171,23 +1171,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 16f2ffff
-      m_LastClickedID: -3562
-      m_ExpandedIDs: 16f2ffff32f6ffffdaf9ffff
+      m_SelectedIDs: c499feff
+      m_LastClickedID: -91708
+      m_ExpandedIDs: c499feffe49dfeffe69dfeff42b0feff46b0feff52b0feffa4c3feff2813ffff0415ffff3016ffff2e4cffffa878ffff7079ffff047affffa47affff3c7bffff14f2ffff6af2ffff7af2ffff7ef2ffff30f6ffffdaf9ffff40b00100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: Pallet Variation 02 (1)
+        m_OriginalName: Pallet Variation 02 (1)
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: -92336
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_TrimLeadingAndTrailingWhitespace: 0
         m_ClientGUIView: {fileID: 11}
@@ -1435,7 +1435,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/_Project/Scripts
+    - Assets/_Project/Prefabs/Crates Barrels Pallets/Pallet Variations
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1445,17 +1445,17 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 61
   m_LastFolders:
-  - Assets/_Project/Scripts
+  - Assets/_Project/Prefabs/Crates Barrels Pallets/Pallet Variations
   m_LastFoldersGridSize: 61
   m_LastProjectPath: C:\Users\joshd\OneDrive - Centennial College\Sem 4 - W2025\Web
     GameDev\Project\WebGame-Group-Project\WebGameProject
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 216}
-    m_SelectedIDs: 12c00000
-    m_LastClickedID: 49170
-    m_ExpandedIDs: 000000000cbe00000ebe000010be000012be000014be000016be000018be00001abe00001cbe00001ebe000020be000022be000024be000026be000028be00002abe000000ca9a3b
+    scrollPos: {x: 0, y: 296}
+    m_SelectedIDs: f8c00000
+    m_LastClickedID: 49400
+    m_ExpandedIDs: 0000000022be000024be000026be000028be00002abe00002cbe00002ebe000030be000032be000034be000036be000038be00003abe00003cbe00003ebe000040be000018c000001ac000001cc0000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1484,7 +1484,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000000cbe00000ebe000010be000012be000014be000016be000018be00001abe00001cbe00001ebe000020be000022be000024be000026be000028be00002abe0000
+    m_ExpandedIDs: 0000000022be000024be000026be000028be00002abe00002cbe00002ebe000030be000032be000034be000036be000038be00003abe00003cbe00003ebe000040be0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
