@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,13 +11,15 @@ namespace Terminus
 
         [SerializeField] GameObject manager;
 
+        [SerializeField] PickUp PickUp;
+
         [SerializeField] TextMeshProUGUI interactionText;
 
         [SerializeField] float interactionDistance = 5f;
 
         IInteractable currentTargetedInteractable;
 
-        RaycastHit seen;
+        GameObject seen;
 
         public void Update()
         {
@@ -33,14 +36,28 @@ namespace Terminus
             {
                 if (hit.collider.CompareTag("PickUp") || hit.collider.CompareTag("ToInventory"))
                 {
-                    seen = hit;
+                    seen = hit.collider.gameObject;
                     currentTargetedInteractable = manager.GetComponent<IInteractable>();
                 }
+                /*else
+                {
+                    currentTargetedInteractable = null;
+                }*/
             }
             else
             {
-                currentTargetedInteractable = null;
+                if (PickUp.heldObj != null )
+                {
+                    seen = PickUp.heldObj;
+                    currentTargetedInteractable = manager.GetComponent<IInteractable>();
+                    
+                }
+                else
+                {
+                    currentTargetedInteractable = null;
+                }
             }
+            
         }
 
 

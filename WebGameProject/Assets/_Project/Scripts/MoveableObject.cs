@@ -21,9 +21,9 @@ namespace Terminus
         }
 
         //What happens when player interacts
-        public void Interact(RaycastHit obj)
+        public void Interact(GameObject obj)
         {
-            switch (obj.collider.tag)
+            switch (obj.tag)
             {
                 case "PickUp":
                     if(pickUpScript.heldObj == null)

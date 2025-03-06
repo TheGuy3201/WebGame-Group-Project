@@ -16,9 +16,10 @@ public class PickUp : MonoBehaviour
     {
         LayerNumber = LayerMask.NameToLayer("holdLayer"); //if your holdLayer is named differently make sure to change this ""
     }
-    
+
     public void PickUpObject(GameObject pickUpObj)
     {
+
         if (pickUpObj.GetComponent<Rigidbody>()) //make sure the object has a RigidBody
         {
             heldObj = pickUpObj; //assign heldObj to the object that was hit by the raycast (no longer == null)
@@ -37,6 +38,7 @@ public class PickUp : MonoBehaviour
         Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), false);
         heldObj.layer = 0; //object assigned back to default layer
         heldObjRb.isKinematic = false;
+        heldObj.transform.position = player.transform.position + player.transform.forward * 2f; // Drop it 2 units in front of the player
         heldObj.transform.parent = null; //unparent object
         heldObj = null; //undefine game object
         Debug.Log("Drop");
