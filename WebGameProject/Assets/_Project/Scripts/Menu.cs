@@ -18,5 +18,16 @@ namespace Terminus
         }
 
 
+
+        public void OnOptionsButton()
+        {
+            SceneManager.LoadScene(2);
+        }
+        public void OnBackButton()
+        {
+            SceneManager.LoadScene(0);
+        }
+
+
     }
 }

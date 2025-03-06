@@ -29,17 +29,21 @@ namespace Terminus
     public void Resume()
         {
             pauseMenuUI.SetActive(false);
+            
             Time.timeScale = 1f;
             GameIsPaused = false;
+            
         }
         void Pause()
         {
             pauseMenuUI.SetActive(true);
-            Time.timeScale = 0f;
-            GameIsPaused = true;
+             Time.timeScale = 0f;
+             GameIsPaused = true;
+             
         }
         public void LoadMenu()
         {
+            Time.timeScale = 1f;
             SceneManager.LoadScene(0);
         }
         public void QuitGame()
@@ -48,15 +52,11 @@ namespace Terminus
             //doesn't work unless project is built
             Debug.Log("Quit");
         }
-        public void InventoryMenu()
-        {
-            //ineventory later
-            Debug.Log("Inventory");
-        }
-        public void ReloadCheckpoint()
+
+        public void Save()
         {
             //Also Later
-            Debug.Log("Checkpoint");
+            Debug.Log("Save");
         }
     }
 }
