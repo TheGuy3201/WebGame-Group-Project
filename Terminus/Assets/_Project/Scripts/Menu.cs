@@ -46,6 +46,12 @@ namespace Terminus
                 yield return null;
             }
 
+            // Load the player's position after the scene is fully loaded
+            LoadPlayerPosition();
+        }
+
+        private void LoadPlayerPosition()
+        {
             // Find the player object and set its position
             GameObject player = GameObject.FindWithTag("Player");
             if (player != null && PlayerPrefs.HasKey("PlayerPosX") && PlayerPrefs.HasKey("PlayerPosY") && PlayerPrefs.HasKey("PlayerPosZ"))
@@ -59,4 +65,3 @@ namespace Terminus
         }
     }
 }
-

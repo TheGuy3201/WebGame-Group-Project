@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+
 namespace Terminus
 {
     public class PauseMenu : MonoBehaviour
@@ -24,32 +25,35 @@ namespace Terminus
                     Pause();
                 }
             }
-
         }
-    
-    public void Resume()
+
+        public void Resume()
         {
             pauseMenuUI.SetActive(false);
             Time.timeScale = 1f;
             GameIsPaused = false;
         }
+
         public void Pause()
         {
             pauseMenuUI.SetActive(true);
             Time.timeScale = 0f;
             GameIsPaused = true;
         }
+
         public void LoadMenu()
         {
             Time.timeScale = 1f;
             SceneManager.LoadScene(0);
         }
+
         public void QuitGame()
         {
             Application.Quit();
-            //doesn't work unless project is built
+            // Doesn't work unless project is built
             Debug.Log("Quit");
         }
+
         public void Saving()
         {
             // Save the player's position
@@ -59,6 +63,7 @@ namespace Terminus
             PlayerPrefs.Save();
             Debug.Log("Game Saved");
         }
+
         private void Start()
         {
             // Load the player's position
@@ -73,4 +78,3 @@ namespace Terminus
         }
     }
 }
-

@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1349
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Project
   m_RootView: {fileID: 5}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 64
+  controlID: 53
   draggingID: 0
 --- !u!114 &9
 MonoBehaviour:
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 65
+  controlID: 54
   draggingID: 0
 --- !u!114 &10
 MonoBehaviour:
@@ -252,7 +252,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 50}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 66
+  controlID: 55
   draggingID: 0
 --- !u!114 &11
 MonoBehaviour:
@@ -1233,9 +1233,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -18.83544, y: -21.359184, z: -14.723743}
+    m_Target: {x: -18.550611, y: -20.802015, z: -15.693132}
     speed: 2
-    m_Value: {x: -18.83544, y: -21.359184, z: -14.723743}
+    m_Value: {x: -18.550611, y: -20.802015, z: -15.693132}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1281,9 +1281,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.13722163, y: 0.86172956, z: -0.32140803, w: -0.36789125}
+    m_Target: {x: -0.13066998, y: 0.8684807, z: -0.31652683, w: -0.35851437}
     speed: 2
-    m_Value: {x: -0.1372179, y: 0.861706, z: -0.32139927, w: -0.3678812}
+    m_Value: {x: -0.13066639, y: 0.8684568, z: -0.31651813, w: -0.3585045}
   m_Size:
     m_Target: 24.4161
     speed: 2
@@ -1357,9 +1357,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: e6ae0000
-      m_LastClickedID: 44774
-      m_ExpandedIDs: daf9ffffc2ae0000daae0000
+      m_SelectedIDs: 028b0000
+      m_LastClickedID: 0
+      m_ExpandedIDs: daf9ffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1621,7 +1621,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/_Project/Scripts
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1631,16 +1631,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 54
   m_LastFolders:
-  - Assets
+  - Assets/_Project/Scripts
   m_LastFoldersGridSize: 54
   m_LastProjectPath: C:\Users\joshd\OneDrive - Centennial College\Sem 4 - W2025\Web
     GameDev\Project\WebGame-Group-Project\Terminus
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: e4c30000
-    m_LastClickedID: 50148
+    scrollPos: {x: 0, y: 376}
+    m_SelectedIDs: 76c60000
+    m_LastClickedID: 50806
     m_ExpandedIDs: 00000000e4c30000e6c30000e8c30000eac30000ecc30000eec30000f0c30000f2c30000f4c30000f6c30000f8c30000fac30000fcc30000fec3000000c4000002c4000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1698,7 +1698,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c623000076620000446100000a610000806600006a700000d0690000a46f0000cc700000726b00009c6b00007e6f0000066e0000fc6f0000126100005c6b0000706b0000f4600000ee600000ce590000ec590000985b0000ac5c000004600000d4c5000000000000aaba0000a6ba00001ead0000c0c4000008bc0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
