@@ -15,14 +15,14 @@ namespace Terminus
         }
         public void DrawSlot(InventoryItem item)
         {
-            if(item == null)
+            if (item == null)
             {
                 ClearSlot();
                 return;
             }
             icon.enabled = true;
 
-            
+
 
 
         }
