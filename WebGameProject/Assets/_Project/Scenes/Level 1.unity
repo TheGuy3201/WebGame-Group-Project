@@ -1742,7 +1742,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 804556267}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 752358634}
+        m_TargetAssemblyTypeName: Terminus.PauseMenu, Assembly-CSharp
+        m_MethodName: LoadMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &804556267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2084,7 +2096,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 887975389}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2017996515}
+        m_TargetAssemblyTypeName: Terminus.Menu, Assembly-CSharp
+        m_MethodName: OnLoadButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &887975389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4062,7 +4086,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1898703463}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 752358634}
+        m_TargetAssemblyTypeName: Terminus.PauseMenu, Assembly-CSharp
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1898703463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4320,6 +4356,7 @@ GameObject:
   - component: {fileID: 2017996513}
   - component: {fileID: 2017996512}
   - component: {fileID: 2017996514}
+  - component: {fileID: 2017996515}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4375,6 +4412,18 @@ MonoBehaviour:
   pickUpRange: 7
   heldObj: {fileID: 0}
   canDrop: 1
+--- !u!114 &2017996515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017996511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bdca0771f87bcd42a7aa6473cbe6232, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2033050288
 GameObject:
   m_ObjectHideFlags: 0
