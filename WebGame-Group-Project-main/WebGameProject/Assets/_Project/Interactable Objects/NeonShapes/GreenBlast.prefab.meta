@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4ccd5c8d80079ec41a274d9fdf13b9db
+timeCreated: 1460111086
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 61454
+  packageName: Neon Shapes
+  packageVersion: 1.0
+  assetPath: Assets/NeonShapes/GreenBlast.prefab
+  uploadId: 114603

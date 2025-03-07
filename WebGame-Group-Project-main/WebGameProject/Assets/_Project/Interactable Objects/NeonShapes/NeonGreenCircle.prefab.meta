@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1bcfccf592472944baab9167f5b7218b
+timeCreated: 1461580111
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 61454
+  packageName: Neon Shapes
+  packageVersion: 1.0
+  assetPath: Assets/NeonShapes/NeonGreenCircle.prefab
+  uploadId: 114603

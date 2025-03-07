@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8f6b01dcc4616ba44ae56aaeed165f57
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 213840
+  packageName: Lowpoly Flatbed Truck
+  packageVersion: 1.1
+  assetPath: Assets/SpawnCampGames/LowPolyFlatbed/Materials/Body/MatteBlack.mat
+  uploadId: 488857

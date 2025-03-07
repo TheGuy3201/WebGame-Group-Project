@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: abd7df1f756577f4bba76933969e9445
+timeCreated: 1461580107
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 61454
+  packageName: Neon Shapes
+  packageVersion: 1.0
+  assetPath: Assets/NeonShapes/NeonBlueCircle.prefab
+  uploadId: 114603
