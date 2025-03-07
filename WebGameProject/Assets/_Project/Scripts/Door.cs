@@ -21,7 +21,7 @@ public class Door : MonoBehaviour
     private float SlideAmount = 2.9f;
 
     //[SerializeField] char DoorLevel;
-    [SerializeField] bool ShallOpen = false;
+    public bool ShallOpen = false;
 
     private Vector3 StartRotation;
     private Vector3 StartPosition;

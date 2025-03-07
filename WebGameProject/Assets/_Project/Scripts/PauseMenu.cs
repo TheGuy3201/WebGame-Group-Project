@@ -8,7 +8,6 @@ namespace Terminus
     {
         public GameObject pauseMenuUI;
         public static bool GameIsPaused = false;
-        public Transform playerTransform;
 
         // Update is called once per frame
         void Update()
@@ -41,7 +40,6 @@ namespace Terminus
         }
         public void LoadMenu()
         {
-            Time.timeScale = 1f;
             SceneManager.LoadScene(0);
         }
         public void QuitGame()
@@ -50,26 +48,15 @@ namespace Terminus
             //doesn't work unless project is built
             Debug.Log("Quit");
         }
-        public void Saving()
+        public void InventoryMenu()
         {
-            // Save the player's position
-            PlayerPrefs.SetFloat("PlayerPosX", playerTransform.position.x);
-            PlayerPrefs.SetFloat("PlayerPosY", playerTransform.position.y);
-            PlayerPrefs.SetFloat("PlayerPosZ", playerTransform.position.z);
-            PlayerPrefs.Save();
-            Debug.Log("Game Saved");
+            //ineventory later
+            Debug.Log("Inventory");
         }
-        private void Start()
+        public void ReloadCheckpoint()
         {
-            // Load the player's position
-            if (PlayerPrefs.HasKey("PlayerPosX") && PlayerPrefs.HasKey("PlayerPosY") && PlayerPrefs.HasKey("PlayerPosZ"))
-            {
-                float x = PlayerPrefs.GetFloat("PlayerPosX");
-                float y = PlayerPrefs.GetFloat("PlayerPosY");
-                float z = PlayerPrefs.GetFloat("PlayerPosZ");
-                playerTransform.position = new Vector3(x, y, z);
-                Debug.Log("Game Loaded");
-            }
+            //Also Later
+            Debug.Log("Checkpoint");
         }
     }
 }
