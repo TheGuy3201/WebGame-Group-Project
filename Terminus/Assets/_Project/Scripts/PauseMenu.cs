@@ -11,6 +11,12 @@ namespace Terminus
         public static bool GameIsPaused = false;
         public Transform playerTransform;
 
+
+        private void Start()
+        {
+            //Load();
+
+        }
         // Update is called once per frame
         void Update()
         {
@@ -57,24 +63,18 @@ namespace Terminus
         public void Saving()
         {
             // Save the player's position
-            PlayerPrefs.SetFloat("PlayerPosX", playerTransform.position.x);
-            PlayerPrefs.SetFloat("PlayerPosY", playerTransform.position.y);
-            PlayerPrefs.SetFloat("PlayerPosZ", playerTransform.position.z);
+            float x=playerTransform.position.x;
+            float y=playerTransform.position.y;
+            float z=playerTransform.position.z;
+            PlayerPrefs.SetFloat(Constants.player_pos_x, x);
+            PlayerPrefs.SetFloat(Constants.player_pos_y, y);
+            PlayerPrefs.SetFloat(Constants.player_pos_z, z);
             PlayerPrefs.Save();
+            Debug.Log($"x:{x}, y:{y}, z:{z}");
             Debug.Log("Game Saved");
         }
 
-        private void Start()
-        {
-            // Load the player's position
-            if (PlayerPrefs.HasKey("PlayerPosX") && PlayerPrefs.HasKey("PlayerPosY") && PlayerPrefs.HasKey("PlayerPosZ"))
-            {
-                float x = PlayerPrefs.GetFloat("PlayerPosX");
-                float y = PlayerPrefs.GetFloat("PlayerPosY");
-                float z = PlayerPrefs.GetFloat("PlayerPosZ");
-                playerTransform.position = new Vector3(x, y, z);
-                Debug.Log("Game Loaded");
-            }
-        }
+
+
     }
 }

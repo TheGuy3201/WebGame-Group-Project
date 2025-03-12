@@ -5,7 +5,7 @@ using static InputSystem_Actions;
 
 namespace WebGame397
 {
-    [CreateAssetMenu(fileName = "InputReader", menuName = "Scriptable Objects/InputReader")]
+    [CreateAssetMenu(fileName = "InputReader", menuName = "_Project/ScriptableObjects/InputReader.asset")]
     public class InputReader : ScriptableObject, IPlayerActions
     {
         public event UnityAction<Vector2> Move = delegate { };
@@ -13,28 +13,46 @@ namespace WebGame397
 
         InputSystem_Actions input;
 
-        private void OnEnable()
-        {
-            if(input == null)
-            {
-                input = new InputSystem_Actions();
-                input.Player.SetCallbacks(this);
-            }
-        }
-
         public void Awake()
         {
-            input.Enable();
+            if (input == null)
+            {
+                
+
+                input = new InputSystem_Actions();
+            }
+                input.Enable();
+            
         }
 
+        
+        private void OnEnable()
+        {
+            if (input == null)
+            {
+                
+
+                input = new InputSystem_Actions();
+                
+            }
+            input.Player.SetCallbacks(this);
+        }
+
+        
         public void EnablePlayerActions()
         {
+            if (input == null)
+            {
+                
+
+                input = new InputSystem_Actions();
+            }
             input.Enable();
         }
 
-        public void OnMove(InputAction.CallbackContext context) 
+        public void OnMove(InputAction.CallbackContext context)
         {
-            switch(context.phase)
+            switch (context.phase)
             {
                 case InputActionPhase.Performed:
                 case InputActionPhase.Canceled:
