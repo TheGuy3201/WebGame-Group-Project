@@ -39,12 +39,23 @@ namespace WebGame397
             rb = GetComponent<Rigidbody>();
             rb.freezeRotation = true;
             mainCam = Camera.main.transform;
+
         }
 
         private void Start()
         {
+            if (input == null)
+            {
+                input = ScriptableObject.CreateInstance<InputReader>();
+            }
             input.EnablePlayerActions();
             animator = GetComponent<Animator>();
+            int used_load = PlayerPrefs.GetInt(Constants.usedload, 0);
+            if (used_load==1)
+            {
+                LoadSavedPos();
+                PlayerPrefs.SetInt(Constants.usedload, 0);
+            }
         }
 
         private void OnEnable()
@@ -62,6 +73,7 @@ namespace WebGame397
         private void FixedUpdate()
         {
             UpdateMovement();
+
         }
 
         private void UpdateMovement()
@@ -107,7 +119,7 @@ namespace WebGame397
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
                 animator.Play("JumpStart");
                 isGrounded = false;
-                
+
             }
         }
 
@@ -169,7 +181,31 @@ namespace WebGame397
 
             if (OnDamage != null) OnDamage(this, EventArgs.Empty);
         }
+
+        private void LoadSavedPos()
+        {
+            GameObject player;
+            float x, y, z;
+            try
+            {
+                player = GameObject.FindWithTag("Player");
+                x = PlayerPrefs.GetFloat(Constants.player_pos_x);
+                y = PlayerPrefs.GetFloat(Constants.player_pos_y);
+                z = PlayerPrefs.GetFloat(Constants.player_pos_z);
+                gameObject.transform.position = new Vector3(x, y, z);
+                rb.position = new Vector3(x, y,z);
+                Debug.Log("Game Loaded");
+                Debug.Log($"x:{x}, y:{y}, z:{z}");
+                Debug.Log(gameObject.transform.position);
+            }
+            catch (System.Exception error)
+            {
+                Debug.Log("Error loading pos" + error.Message);
+                Debug.LogException(error);
+                return;
+            }
+        }
     }
 
-    
+
 }

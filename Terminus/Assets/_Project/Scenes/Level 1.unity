@@ -424,7 +424,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.434633, y: 2.5609999, z: -0.46090794}
+  m_LocalPosition: {x: 10.434633, y: 2.5809999, z: -0.46090794}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -600,7 +600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1114260476483171701, guid: 7ae956b4f54394e80818898d8f4d30c6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.88
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 1114260476483171701, guid: 7ae956b4f54394e80818898d8f4d30c6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -635,10 +635,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3632141598530714471, guid: 7ae956b4f54394e80818898d8f4d30c6, type: 3}
-      propertyPath: input
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3632141598530714471, guid: 7ae956b4f54394e80818898d8f4d30c6, type: 3}
       propertyPath: PickUp
       value: 
       objectReference: {fileID: 2017996514}
@@ -654,26 +650,18 @@ PrefabInstance:
       propertyPath: interactionText
       value: 
       objectReference: {fileID: 812070166}
-    - target: {fileID: 3632141598530714471, guid: 7ae956b4f54394e80818898d8f4d30c6, type: 3}
-      propertyPath: interactionDistance
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3862277631971027947, guid: 7ae956b4f54394e80818898d8f4d30c6, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5806437196521369587, guid: 7ae956b4f54394e80818898d8f4d30c6, type: 3}
+      propertyPath: mainCam
+      value: 
+      objectReference: {fileID: 330585546}
+    - target: {fileID: 5806437196521369587, guid: 7ae956b4f54394e80818898d8f4d30c6, type: 3}
       propertyPath: GameOverScreen
       value: 
       objectReference: {fileID: 1668153058}
-    - target: {fileID: 5806437196521369587, guid: 7ae956b4f54394e80818898d8f4d30c6, type: 3}
-      propertyPath: FootstepAudioVolume
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7978810107987169270, guid: 7ae956b4f54394e80818898d8f4d30c6, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.097
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1628,7 +1616,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -2367,7 +2355,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1114600641}
-  - component: {fileID: 1114600640}
   m_Layer: 0
   m_Name: SaveManager
   m_TagString: Untagged
@@ -2375,18 +2362,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1114600640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1114600639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bdca0771f87bcd42a7aa6473cbe6232, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1114600641
 Transform:
   m_ObjectHideFlags: 0
@@ -4730,7 +4705,7 @@ Transform:
   m_GameObject: {fileID: 2056350091}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.434633, y: 2.5609999, z: -0.46090794}
+  m_LocalPosition: {x: 10.434633, y: 2.5809999, z: -0.46090794}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
