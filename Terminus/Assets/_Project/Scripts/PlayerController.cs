@@ -36,6 +36,9 @@ namespace WebGame397
 
         private void Awake()
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+
             rb = GetComponent<Rigidbody>();
             rb.freezeRotation = true;
             mainCam = Camera.main.transform;
@@ -78,7 +81,10 @@ namespace WebGame397
 
         private void UpdateMovement()
         {
-            var adjustedDirection = Quaternion.AngleAxis(mainCam.eulerAngles.y, Vector3.up) * movement;
+
+            // Remove mainCam.eulerAngles.y influence
+            var adjustedDirection = movement; // Directly use movement input
+
             if (adjustedDirection.magnitude > 0f)
             {
                 HandleRotation(adjustedDirection);
@@ -91,6 +97,7 @@ namespace WebGame397
                 rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
             }
         }
+
 
         private void HandleMovement(Vector3 adjustedMovement)
         {

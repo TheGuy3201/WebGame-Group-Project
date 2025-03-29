@@ -39,7 +39,7 @@ namespace Terminus
                     if (pickUpScript.heldObj != null) //if player is holding object
                     {
                         pickUpScript.MoveObject(); //keep object position at holdPos
-                        if (Input.GetKeyDown(KeyCode.Mouse0) && pickUpScript.canDrop == true) //Mous0 (leftclick) is used to throw, change this if you want another button to be used)
+                        if (Input.GetKeyDown(KeyCode.E) && pickUpScript.canDrop == true) //Mous0 (leftclick) is used to throw, change this if you want another button to be used)
                         {
                             pickUpScript.StopClipping();
                             pickUpScript.ThrowObject();
