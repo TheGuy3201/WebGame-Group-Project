@@ -5391,7 +5391,7 @@ Transform:
   m_GameObject: {fileID: 3862277632202429645}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.434633, y: 0.9, z: -0.521}
+  m_LocalPosition: {x: 10.434633, y: 0.9, z: 0.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5448,7 +5448,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 5
-  m_AngularDrag: 0.05
+  m_AngularDrag: 1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -5827,7 +5827,6 @@ MonoBehaviour:
   moveSpeed: 200
   jumpForce: 10
   mainCam: {fileID: 1515862352700702373}
-  playerBody: {fileID: 0}
   animator: {fileID: 5615815007961596932}
   FootstepAudioClips:
   - {fileID: 8300000, guid: 72f526a6a9890f643a88e85a61c86c8a, type: 3}
@@ -5844,7 +5843,7 @@ MonoBehaviour:
   FootstepAudioVolume: 100
   health: 100
   GameOverScreen: {fileID: 1668153058}
-  sensitivity: 0.2
+  sensitivity: 10
   lookInput: {x: 0, y: 0}
   maxLookAngle: 80
 --- !u!20 &6677858406619224424
