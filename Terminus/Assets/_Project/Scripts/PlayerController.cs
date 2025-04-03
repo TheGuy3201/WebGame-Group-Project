@@ -114,41 +114,47 @@ namespace WebGame397
         public void HandleRotation()
         {
             Vector3 currentRotation;
-            float newRotationX,newRotationY;
+            float newRotationX;
+
+            // Handle vertical camera rotation (looking up/down)
             if (lookInput.y != 0)
             {
-                // Get current rotation in degrees
                 currentRotation = mainCam.eulerAngles;
 
-                // Convert it to a range of -180 to 180 (to avoid flipping issues)
-                if (currentRotation.x > 180) {currentRotation.x -= 360;}
+                // Convert rotation to range -180 to 180 to avoid flipping
+                if (currentRotation.x > 180) { currentRotation.x -= 360; }
 
                 // Apply clamped vertical rotation
                 newRotationX = currentRotation.x - lookInput.y * sensitivity;
                 newRotationX = Mathf.Clamp(newRotationX, -maxLookAngle, maxLookAngle);
 
-                // Apply new rotation
+                // Set camera rotation
                 mainCam.rotation = Quaternion.Euler(newRotationX, currentRotation.y, currentRotation.z);
             }
-            if (lookInput.x != 0){
-            
-            
+
+            // Handle horizontal player rotation (looking left/right)
+            if (lookInput.x != 0)
+            {
+                Quaternion newRotation = Quaternion.Euler(0, lookInput.x * sensitivity + transform.eulerAngles.y, 0);
+                rb.MoveRotation(newRotation);  
             }
-            transform.Rotate(0, (lookInput.x*sensitivity) * Time.deltaTime, 0);
-            rb.MoveRotation(transform.rotation);
-
-
-
         }
+
+
 
 
         private void HandleMovement(Vector3 adjustedMovement)
         {
-            var velocity = adjustedMovement * moveSpeed * Time.fixedDeltaTime;
-            rb.linearVelocity = new Vector3(velocity.x, rb.linearVelocity.y, velocity.z);
+            // Transform movement to be relative to the player's current rotation
+            Vector3 moveDirection = transform.TransformDirection(adjustedMovement);
+
+            var velocity = moveDirection * moveSpeed * Time.fixedDeltaTime;
+            rb.linearVelocity = new Vector3(velocity.x, rb.linearVelocity.y, velocity.z); // Ensure Y velocity isn't overridden
+
             animator.SetFloat("Speed", 2);
             animator.SetFloat("MotionSpeed", 1);
         }
+
         /*
                 private void HandleRotation(Vector3 adjustedRotation)
                 {
@@ -163,7 +169,7 @@ namespace WebGame397
             movement.z = move.y;
         }
 
-        private void Jump()
+        public void Jump()
         {
             if (isGrounded)
             {

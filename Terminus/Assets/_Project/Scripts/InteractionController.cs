@@ -19,7 +19,7 @@ namespace Terminus
 
         IInteractable currentTargetedInteractable;
 
-        GameObject seen;
+        public GameObject seen;
 
         public void Update()
         {
