@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 namespace Terminus
 {
@@ -20,16 +21,16 @@ namespace Terminus
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            
+        }
+        private void OnPause(InputAction.CallbackContext context)
+        {
+            if (context.performed) // Ensures it only triggers once per press
             {
                 if (GameIsPaused)
-                {
                     Resume();
-                }
                 else
-                {
                     Pause();
-                }
             }
         }
 
@@ -63,9 +64,9 @@ namespace Terminus
         public void Saving()
         {
             // Save the player's position
-            float x=playerTransform.position.x;
-            float y=playerTransform.position.y;
-            float z=playerTransform.position.z;
+            float x = playerTransform.position.x;
+            float y = playerTransform.position.y;
+            float z = playerTransform.position.z;
             PlayerPrefs.SetFloat(Constants.player_pos_x, x);
             PlayerPrefs.SetFloat(Constants.player_pos_y, y);
             PlayerPrefs.SetFloat(Constants.player_pos_z, z);

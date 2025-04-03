@@ -1,0 +1,2 @@
+D:\Repo\WebGame-Group-Project\Terminus\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\CMakeLists.txt
+D:\Repo\WebGame-Group-Project\Terminus\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\CMakeLists.txt

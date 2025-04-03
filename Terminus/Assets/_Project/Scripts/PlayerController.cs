@@ -1,6 +1,7 @@
 using System;
 using Terminus;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace WebGame397
 {
@@ -14,7 +15,6 @@ namespace WebGame397
 
         //Movement variables
         [SerializeField] private float moveSpeed = 200f;
-        [SerializeField] private float rotationSpeed = 200f;
         [SerializeField] private float jumpForce = 10f;
 
         [SerializeField] private Transform mainCam;
@@ -33,15 +33,17 @@ namespace WebGame397
         //Death Screen Variables
         public GameOver_Manager GameOverScreen;
 
+        //Rotation fix
+        public float sensitivity = 1;
+        public Vector2 lookInput;
+        public float maxLookAngle = 70f;
+
+
 
         private void Awake()
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-
             rb = GetComponent<Rigidbody>();
-            rb.freezeRotation = true;
-            mainCam = Camera.main.transform;
+            //mainCam = Camera.main.transform;
 
         }
 
@@ -52,9 +54,8 @@ namespace WebGame397
                 input = ScriptableObject.CreateInstance<InputReader>();
             }
             input.EnablePlayerActions();
-            animator = GetComponent<Animator>();
             int used_load = PlayerPrefs.GetInt(Constants.usedload, 0);
-            if (used_load==1)
+            if (used_load == 1)
             {
                 LoadSavedPos();
                 PlayerPrefs.SetInt(Constants.usedload, 0);
@@ -73,10 +74,22 @@ namespace WebGame397
             input.Jump -= Jump;
         }
 
+        public void Update()
+        {
+            HandleRotation();
+        }
         private void FixedUpdate()
         {
             UpdateMovement();
+            
 
+
+        }
+
+
+        public void OnLook(InputAction.CallbackContext context)
+        {
+            lookInput = context.ReadValue<Vector2>();  // Right Stick input from gamepad
         }
 
         private void UpdateMovement()
@@ -87,7 +100,7 @@ namespace WebGame397
 
             if (adjustedDirection.magnitude > 0f)
             {
-                HandleRotation(adjustedDirection);
+                //HandleRotation(adjustedDirection);
                 HandleMovement(adjustedDirection);
             }
             else
@@ -98,6 +111,36 @@ namespace WebGame397
             }
         }
 
+        public void HandleRotation()
+        {
+            Vector3 currentRotation;
+            float newRotationX,newRotationY;
+            if (lookInput.y != 0)
+            {
+                // Get current rotation in degrees
+                currentRotation = mainCam.eulerAngles;
+
+                // Convert it to a range of -180 to 180 (to avoid flipping issues)
+                if (currentRotation.x > 180) {currentRotation.x -= 360;}
+
+                // Apply clamped vertical rotation
+                newRotationX = currentRotation.x - lookInput.y * sensitivity;
+                newRotationX = Mathf.Clamp(newRotationX, -maxLookAngle, maxLookAngle);
+
+                // Apply new rotation
+                mainCam.rotation = Quaternion.Euler(newRotationX, currentRotation.y, currentRotation.z);
+            }
+            if (lookInput.x != 0){
+            
+            
+            }
+            transform.Rotate(0, (lookInput.x*sensitivity) * Time.deltaTime, 0);
+            rb.MoveRotation(transform.rotation);
+
+
+
+        }
+
 
         private void HandleMovement(Vector3 adjustedMovement)
         {
@@ -106,12 +149,13 @@ namespace WebGame397
             animator.SetFloat("Speed", 2);
             animator.SetFloat("MotionSpeed", 1);
         }
-
-        private void HandleRotation(Vector3 adjustedRotation)
-        {
-            var targetRotation = Quaternion.LookRotation(adjustedRotation);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        }
+        /*
+                private void HandleRotation(Vector3 adjustedRotation)
+                {
+                    var targetRotation = Quaternion.LookRotation(adjustedRotation);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                }
+        */
 
         private void GetMovement(Vector2 move)
         {
@@ -200,7 +244,7 @@ namespace WebGame397
                 y = PlayerPrefs.GetFloat(Constants.player_pos_y);
                 z = PlayerPrefs.GetFloat(Constants.player_pos_z);
                 gameObject.transform.position = new Vector3(x, y, z);
-                rb.position = new Vector3(x, y,z);
+                rb.position = new Vector3(x, y, z);
                 Debug.Log("Game Loaded");
                 Debug.Log($"x:{x}, y:{y}, z:{z}");
                 Debug.Log(gameObject.transform.position);
