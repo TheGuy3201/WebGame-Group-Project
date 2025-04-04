@@ -11,18 +11,7 @@ namespace Terminus
         public GameObject pauseMenuUI;
         public static bool GameIsPaused = false;
         public Transform playerTransform;
-
-
-        private void Start()
-        {
-            //Load();
-
-        }
-        // Update is called once per frame
-        void Update()
-        {
-            
-        }
+        
         private void OnPause(InputAction.CallbackContext context)
         {
             if (context.performed) // Ensures it only triggers once per press

@@ -1,3 +1,4 @@
+using Terminus;
 using UnityEngine;
 
 public class PickUp : MonoBehaviour
@@ -29,6 +30,9 @@ public class PickUp : MonoBehaviour
             heldObj.layer = LayerNumber; //change the object layer to the holdLayer
             //make sure object doesnt collide with player, it can cause weird bugs
             Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), true);
+        }
+        if(heldObj.name == "BlueFlatbed") { 
+            GameEvents.ZoneEntered("Hulk"); 
         }
         Debug.Log("PickUp2");
     }

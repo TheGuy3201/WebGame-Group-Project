@@ -10,6 +10,8 @@ TagManager:
   - Blue
   - PickUp
   - ToInventory
+  - Achievement
+  - AchieveTXT
   layers:
   - Default
   - TransparentFX

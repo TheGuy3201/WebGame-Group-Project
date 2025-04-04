@@ -17,34 +17,24 @@ namespace WebGame397
         {
             if (input == null)
             {
-                
-
                 input = new InputSystem_Actions();
             }
                 input.Enable();
-            
         }
-
         
         private void OnEnable()
         {
             if (input == null)
             {
-                
-
                 input = new InputSystem_Actions();
-                
             }
             input.Player.SetCallbacks(this);
         }
-
         
         public void EnablePlayerActions()
         {
             if (input == null)
             {
-                
-
                 input = new InputSystem_Actions();
             }
             input.Enable();

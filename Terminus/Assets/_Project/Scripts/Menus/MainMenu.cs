@@ -7,8 +7,6 @@ namespace Terminus
 {
     public class MainMenu : MonoBehaviour
     {
-
-
         public void OnPlayButton()
         {
             SceneManager.LoadScene(1);
@@ -39,15 +37,6 @@ namespace Terminus
                 PlayerPrefs.SetInt(Constants.usedload, 1);
                 SceneManager.LoadScene(1);
             }
-
-
         }
-
-
-
-
-
-
-
     }
 }

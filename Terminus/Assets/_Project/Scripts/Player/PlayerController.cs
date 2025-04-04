@@ -81,9 +81,6 @@ namespace WebGame397
         private void FixedUpdate()
         {
             UpdateMovement();
-            
-
-
         }
 
 
@@ -140,9 +137,6 @@ namespace WebGame397
             }
         }
 
-
-
-
         private void HandleMovement(Vector3 adjustedMovement)
         {
             // Transform movement to be relative to the player's current rotation
@@ -176,7 +170,6 @@ namespace WebGame397
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
                 animator.Play("JumpStart");
                 isGrounded = false;
-
             }
         }
 
@@ -263,6 +256,4 @@ namespace WebGame397
             }
         }
     }
-
-
 }
