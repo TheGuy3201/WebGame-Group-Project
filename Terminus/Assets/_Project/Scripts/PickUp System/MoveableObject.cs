@@ -91,6 +91,7 @@ namespace Terminus
 
                 case "ToInventory":
                     ToInventory();
+                    //Destroy(obj.gameObject);
                     break;
 
                 default:
@@ -101,7 +102,19 @@ namespace Terminus
 
         private void ToInventory()
         {
-            Debug.Log("Send Item To Inventory, Soon to be complete");
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().Damage(-15);
+            Destroy(GameObject.FindGameObjectWithTag("Player").GetComponent<InteractionController>().seen.transform.gameObject);
+            Debug.Log("Send Item To Inventory, Currently just allows player to interact with item, Soon to be complete");
         }
     }
+
+    /*class HealthPack
+    {
+        float healthToAdd;
+
+        HealthPack(float health)
+        {
+
+        }
+    }*/
 }
