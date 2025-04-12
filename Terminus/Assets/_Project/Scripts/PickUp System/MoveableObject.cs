@@ -102,9 +102,11 @@ namespace Terminus
 
         private void ToInventory()
         {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().Damage(-15);
+            GameObject.FindWithTag("Player").GetComponent<InteractionController>().seen.GetComponent<ItemPickup>().Pickup();
+            GameObject.FindWithTag("GameController").GetComponent<InventoryManager>().ListItems();
+            /*GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().Damage(-15);
             Destroy(GameObject.FindGameObjectWithTag("Player").GetComponent<InteractionController>().seen.transform.gameObject);
-            Debug.Log("Send Item To Inventory, Currently just allows player to interact with item, Soon to be complete");
+            Debug.Log("Send Item To Inventory, Currently just allows player to interact with item, Soon to be complete");*/
         }
     }
 

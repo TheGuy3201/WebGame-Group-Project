@@ -1,50 +1,51 @@
 using NUnit.Framework;
-using UnityEngine;
 using System.Collections.Generic;
-using System.Collections;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace Terminus
 {
     public class InventoryManager : MonoBehaviour
     {
-        public GameObject slotPrefab;
-        public List<InventorySlot> inventorySlots = new List<InventorySlot>(9);
+        public static InventoryManager Instance;
+        public List<Item> Items = new List<Item>();
 
-        void ResetInventory()
+        public Transform ItemContent;
+        public GameObject InventoryItem;
+
+        private void Awake()
         {
-            foreach (Transform childTransform in transform)
-            {
-                Destroy(childTransform.gameObject);
-            }
-            inventorySlots = new List<InventorySlot>(9);
+            Instance = this;
         }
-        void DrawInventory(List<InventoryItem> inventory)
+
+        public void Add(Item item)
         {
-            ResetInventory();
-           for (int i=0; i < inventorySlots.Capacity; i++) 
-            {
-                CreateInventorySlot();
-            }
-           for (int i=0;i < inventory.Count; i++) 
-            {
-                inventorySlots[i].DrawSlot(inventory[i]);
-            
-            }
-           
-
-
+            Items.Add(item);
         }
-        void CreateInventorySlot() 
+
+        public void Remove(Item item)
         {
-            GameObject newSlot = Instantiate(slotPrefab);
-            newSlot.transform.SetParent(transform, false);
+            Items.Remove(item);
+        }
 
-            InventorySlot newSlotComponent = newSlot.GetComponent<InventorySlot>();
-            newSlotComponent.ClearSlot();
+        public void ListItems()
+        {
+            //Deletes content before opening
+            foreach(Transform item in ItemContent)
+            {
+                Destroy(item.gameObject);
+            }
 
-            inventorySlots.Add(newSlotComponent);
+            foreach (var item in Items)
+            {
+                GameObject obj = Instantiate(InventoryItem, ItemContent);
+                TMP_Text itemName = obj.transform.Find("ItemName").GetComponent<TMP_Text>();
+                Image itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
 
+                itemName.text = item.itemName;
+                itemIcon.sprite = item.icon;
+            }
         }
     }
 }
-
