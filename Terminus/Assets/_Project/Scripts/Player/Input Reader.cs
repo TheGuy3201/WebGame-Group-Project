@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -10,6 +11,7 @@ namespace WebGame397
     {
         public event UnityAction<Vector2> Move = delegate { };
         public event UnityAction Jump = delegate { };
+        public event Action<Vector2> Look;
 
         InputSystem_Actions input;
 
@@ -62,7 +64,13 @@ namespace WebGame397
             }
         }
 
-        public void OnLook(InputAction.CallbackContext context) { }
+        public void OnLook(InputAction.CallbackContext context) 
+        {
+            if (context.control.device is Gamepad) // only trigger Look if using joystick
+            {
+                Look?.Invoke(context.ReadValue<Vector2>());
+            }
+        }
         public void OnAttack(InputAction.CallbackContext context) { }
         public void OnInteract(InputAction.CallbackContext context) { }
         public void OnCrouch(InputAction.CallbackContext context) { }

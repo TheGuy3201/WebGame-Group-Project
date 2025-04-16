@@ -14,7 +14,7 @@ namespace WebGame397
         [SerializeField] private Vector3 movement;
 
         //Movement variables
-        [SerializeField] private float moveSpeed = 200f;
+        [SerializeField] private float moveSpeed = 5f;
         [SerializeField] private float jumpForce = 10f;
 
         [SerializeField] private Transform mainCam;
@@ -34,17 +34,17 @@ namespace WebGame397
         public GameOver_Manager GameOverScreen;
 
         //Rotation fix
-        public float sensitivity = 1;
+        public float sensitivity = 0.2f; // Reduced sensitivity
         public Vector2 lookInput;
         public float maxLookAngle = 70f;
-
-
+        private Vector2 smoothLookInput = Vector2.zero;
+        private Vector2 currentLookVelocity = Vector2.zero;
+        public float lookSmoothTime = 0.1f; // Further reduced smooth time for slower input response
 
         private void Awake()
         {
             rb = GetComponent<Rigidbody>();
-            //mainCam = Camera.main.transform;
-
+            mainCam = Camera.main.transform;
         }
 
         private void Start()
@@ -64,12 +64,14 @@ namespace WebGame397
 
         private void OnEnable()
         {
+            input.Look += GetLook;
             input.Move += GetMovement;
             input.Jump += Jump;
         }
 
         private void OnDisable()
         {
+            input.Look -= GetLook;
             input.Move -= GetMovement;
             input.Jump -= Jump;
         }
@@ -78,26 +80,28 @@ namespace WebGame397
         {
             HandleRotation();
         }
+
         private void FixedUpdate()
         {
             UpdateMovement();
         }
 
-
-        public void OnLook(InputAction.CallbackContext context)
+        private void GetLook(Vector2 value)
         {
-            lookInput = context.ReadValue<Vector2>();  // Right Stick input from gamepad
+#if UNITY_ANDROID
+            lookInput = value * 0.05f; // Reduce touch input further on mobile
+#else
+            lookInput = value * 0.5f; // Reduce mouse/web input sensitivity
+#endif
         }
 
         private void UpdateMovement()
         {
-
             // Remove mainCam.eulerAngles.y influence
             var adjustedDirection = movement; // Directly use movement input
 
             if (adjustedDirection.magnitude > 0f)
             {
-                //HandleRotation(adjustedDirection);
                 HandleMovement(adjustedDirection);
             }
             else
@@ -110,30 +114,22 @@ namespace WebGame397
 
         public void HandleRotation()
         {
-            Vector3 currentRotation;
-            float newRotationX;
+            // Smooth the input for rotation
+            smoothLookInput = Vector2.SmoothDamp(smoothLookInput, lookInput, ref currentLookVelocity, lookSmoothTime);
 
             // Handle vertical camera rotation (looking up/down)
-            if (lookInput.y != 0)
-            {
-                currentRotation = mainCam.eulerAngles;
+            Vector3 currentRotation = mainCam.localEulerAngles;
+            if (currentRotation.x > 180) currentRotation.x -= 360f;
 
-                // Convert rotation to range -180 to 180 to avoid flipping
-                if (currentRotation.x > 180) { currentRotation.x -= 360; }
-
-                // Apply clamped vertical rotation
-                newRotationX = currentRotation.x - lookInput.y * sensitivity;
-                newRotationX = Mathf.Clamp(newRotationX, -maxLookAngle, maxLookAngle);
-
-                // Set camera rotation
-                mainCam.rotation = Quaternion.Euler(newRotationX, currentRotation.y, currentRotation.z);
-            }
+            // Apply clamped vertical rotation
+            float newX = Mathf.Clamp(currentRotation.x - smoothLookInput.y * sensitivity, -maxLookAngle, maxLookAngle);
+            mainCam.localRotation = Quaternion.Euler(newX, 0f, 0f);
 
             // Handle horizontal player rotation (looking left/right)
-            if (lookInput.x != 0)
+            if (smoothLookInput.x != 0)
             {
-                Quaternion newRotation = Quaternion.Euler(0, lookInput.x * sensitivity + transform.eulerAngles.y, 0);
-                rb.MoveRotation(newRotation);  
+                float yaw = transform.eulerAngles.y + smoothLookInput.x * sensitivity;
+                rb.MoveRotation(Quaternion.Euler(0f, yaw, 0f));
             }
         }
 
@@ -142,20 +138,13 @@ namespace WebGame397
             // Transform movement to be relative to the player's current rotation
             Vector3 moveDirection = transform.TransformDirection(adjustedMovement);
 
+            // Smoothly apply velocity
             var velocity = moveDirection * moveSpeed * Time.fixedDeltaTime;
             rb.linearVelocity = new Vector3(velocity.x, rb.linearVelocity.y, velocity.z); // Ensure Y velocity isn't overridden
 
             animator.SetFloat("Speed", 2);
             animator.SetFloat("MotionSpeed", 1);
         }
-
-        /*
-                private void HandleRotation(Vector3 adjustedRotation)
-                {
-                    var targetRotation = Quaternion.LookRotation(adjustedRotation);
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-                }
-        */
 
         private void GetMovement(Vector2 move)
         {
